@@ -30,4 +30,4 @@ plotMDS(mdsRep, labels)
 
 ```
 
-![Alt text](/images/img.png?raw=true "MDS Plot Example")
+![ScreenShot](images/mds_plot.png)
