@@ -23,7 +23,7 @@ source("plot//plotDendrogram.R")
 # 0. Create example confusion matrix and labels
 n = 6
 confMatrix = matrix(abs(runif(n^2)), n, n) # square matrix with uniform distribution
-confMatrix = sweep(confMatrix, 2, rowSums(confMatrix), `/`) # normalize rows
+confMatrix = confMatrix/rowSums(confMatrix) # normalize rows
 
 labels = list(names = 1:n,
               colors = c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#bcbd22")) # pretty colors!

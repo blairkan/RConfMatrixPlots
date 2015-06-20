@@ -15,7 +15,7 @@ source("plot//plotMDS.R")
 #
 n = 12
 confMatrix = matrix(abs(runif(n^2)), n, n) # square matrix with uniform distribution
-confMatrix = sweep(confMatrix, 2, rowSums(confMatrix), `/`) # normalize rows
+confMatrix = confMatrix/rowSums(confMatrix) # normalize rows
 # image(confMatrix, xaxt="n", yaxt="n") # a very confused matrix
 
 #

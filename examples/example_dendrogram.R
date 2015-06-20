@@ -15,7 +15,7 @@ source("plot//plotDendrogram.R")
 #
 n = 12
 confMatrix = matrix(abs(rnorm(n^2)), n, n) # square matrix with normal distribution
-confMatrix = sweep(confMatrix, 2, rowSums(confMatrix), `/`) # normalize rows
+confMatrix = confMatrix/rowSums(confMatrix) # normalize rows
 # image(confMatrix, xaxt="n", yaxt="n") # a very confused matrix
 
 #
