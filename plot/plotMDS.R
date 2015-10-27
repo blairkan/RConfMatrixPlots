@@ -1,7 +1,7 @@
 #
 # Plots the MDS coordinates with the options specified in labels
 #
-# Args:
+# Arguments:
 #   mds: the output of cmdscale. (a matrix with the MDS coordinates)
 #   labels: a list of label variables. possible variables are 
 #     labels$names: the text labels of the elements.

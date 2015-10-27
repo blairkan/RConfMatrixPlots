@@ -2,7 +2,7 @@
 # Transforms a confusion matrix into a symmetric distance object
 #
 # Args:
-#   probMatrix: a square matrix. not necessarily symmetric
+#   cm: a square matrix. not necessarily symmetric
 #   sim.method: the method for transforming the probability matrix into a similarity matrix. {average, diagonal, geometric} Default is "average".
 #               "average" takes the average of the confusion matrix and its transpose. 
 #               "diagonal" normalizes each row by the diagonal component then takes the average of the normlized confusion matrix and its transpose. 
@@ -18,25 +18,25 @@
 #
 # see STIMULUS AND RESPONSE GENERALIZATION: DEDUCTION OF THE GENERALIZATION (Shepard 1958)
 #
-getDistances = function(cm, sim.method="average", dist.method="linear", dist.power = 1) {
+getDistances = function(cm, method="linear", dist.power = 1) {
   
-  # calculate similarity from confusion matrix
-  if (sim.method == "average") {
-    sim = ( cm + t(cm) )/2 # make symmetric
-  } else if (sim.method == "diagonal") { 
-    sim = cm/diag(cm)
-    sim = ( sim + t(sim) )/2 # arithmetic mean
-  } else if (sim.method == "geometric") {
-    sim = cm/diag(cm)
-    sim = sqrt(sim * t(sim)) # geometric mean
-  }
+#   # calculate similarity from confusion matrix
+#   if (sim.method == "average") {
+#     sim = ( cm + t(cm) )/2 # make symmetric
+#   } else if (sim.method == "diagonal") { 
+#     sim = cm/diag(cm)
+#     sim = ( sim + t(sim) )/2 # arithmetic mean
+#   } else if (sim.method == "geometric") {
+#     sim = cm/diag(cm)
+#     sim = sqrt(sim * t(sim)) # geometric mean
+#   }
   
   # transform similarity to distances
-  if (dist.method == "linear") {
+  if (method == "linear") {
     dst = 1 - sim
-  } else if (dist.method == "power") {
+  } else if (method == "power") {
     dst = 1 - sim^dist.power
-  } else if (dist.method == "log") {
+  } else if (method == "log") {
     dst = 1 - log2((dist.power*sim + 1)) / log2(dist.power + 1)
   }
   
