@@ -23,27 +23,22 @@ source("plot//plotRepresentation.R")
 # 0. Create example confusion matrix and labels
 n = 6
 confMatrix = matrix(abs(runif(n^2)), n, n) # square matrix with uniform distribution
-# confMatrix = confMatrix/rowSums(confMatrix) # normalize rows
 
 labels = list(names = 1:n,
               colors = c("#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#bcbd22")) # pretty colors!
 
 
 ## 1. Get distance matrix from confusion matrix
-normMatrix = normalizeMatrix(confMatrix) # normalize
-symmMatrix = symmetrizeMatrix(normMatrix) # symmetrize
-dstMatrix = getDistances(symmMatrix) # make distance
+normMatrix = normalizeMatrix(confMatrix, 'r.diagonal') # normalize
+symmMatrix = symmetrizeMatrix(normMatrix, 'average') # symmetrize
+dstMatrix = getDistances(symmMatrix, 'linear') # make distance
 
 
 ## Plot MDS
-# 2. Get MDS representation
-dataRep = calculateRepresentation(dstMatrix, 'mds')
-# 3. Plot MDS
-plotRepresentation(dataRep, labels)
+dataRep = calculateRepresentation(dstMatrix, 'mds') # 2. Get MDS representation
+plotRepresentation(dataRep, labels) # 3. Plot MDS
 
 
 ## Plot Dendrogram
-# 2. Get hierarchical clustering representation
-dataRep = calculateRepresentation(dstMatrix, 'hclust')
-# 3. Plot dendrogram
-plotRepresentation(dataRep, labels)
+dataRep = calculateRepresentation(dstMatrix, 'hclust') # 2. Get hierarchical clustering representation
+plotRepresentation(dataRep, labels) # 3. Plot dendrogram

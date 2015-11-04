@@ -11,19 +11,19 @@
 symmetrizeMatrix = function(m, method = 'average'){
   # TODO: check if matrix is square
   
-  if (sim.method == "average") {
+  if (method == "average") {
     
     sim = ( m + t(m) )/2 # arithmetic mean
     
-  } else if (sim.method == "geometric") { 
+  } else if (method == "geometric") { 
     
     sim = sqrt( m * t(m) ) # geometric mean
     
-  } else if (sim.method == "harmonic") { 
+  } else if (method == "harmonic") { 
     
     sim = 1/( 1/m + 1/t(m) )
     
-  } else if (sim.method == "norm") { 
+  } else if (method == "norm") { 
     # b_ij = a_ij * a_ji / (a_ii * a_jj) = (a_ij/a_ii) * (a_ji/a_jj)
     ra = m / diag(m)
     sim = ra * t(ra)
