@@ -17,10 +17,8 @@
 source("distance//normalizeMatrix.R")
 source("distance//symmetrizeMatrix.R")
 source("distance//getDistances.R")
-source("process//calculateMDS.R")
-source("process//calculateHclust.R")
-source("plot//plotMDS.R")
-source("plot//plotDendrogram.R")
+source("process//calculateRepresentation.R")
+source("plot//plotRepresentation.R")
 
 # 0. Create example confusion matrix and labels
 n = 6
@@ -39,13 +37,13 @@ dstMatrix = getDistances(symmMatrix) # make distance
 
 ## Plot MDS
 # 2. Get MDS representation
-mdsRep = calculateMDS(dstMatrix)
+dataRep = calculateRepresentation(dstMatrix, 'mds')
 # 3. Plot MDS
-plotMDS(mdsRep, labels)
+plotRepresentation(dataRep, labels)
 
 
 ## Plot Dendrogram
 # 2. Get hierarchical clustering representation
-denRep = calculateHclust(dstMatrix)
+dataRep = calculateRepresentation(dstMatrix, 'hclust')
 # 3. Plot dendrogram
-plotDendrogram(denRep, labels)
+plotRepresentation(dataRep, labels)

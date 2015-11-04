@@ -10,7 +10,7 @@
 # Returns: 
 #   an hclust object
 #
-calculateHclust = function(distances, method = "ward", reorder=T) {
+calculateHclust = function(distances, method = "ward.D", reorder=T) {
   cluster = hclust(distances, method = method)
   
   if (reorder) {
